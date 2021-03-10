@@ -26,7 +26,7 @@ router.post('/', (req, res) => {
         security.updateDB(req.users);
         res.render('./dashboard/index', {user, token});
     } else
-        res.json({status: 404});
+        res.redirect(301, '/login?error=true');
     // let token = security.decode(gLoginToken);
     // res.render('./dashboard/index', {user: security.findUser(req.users, token[0], token[1])});
 });

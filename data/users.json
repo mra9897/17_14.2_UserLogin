@@ -78,5 +78,13 @@
     "email": "heshmat@gmail.com",
     "gender": "male",
     "isLoggedIn": false
+  },
+  {
+    "name": "jadid",
+    "username": "user_jadid",
+    "password": "123",
+    "email": "jadid@mail.com",
+    "gender": "male",
+    "isLoggedIn": false
   }
 ]

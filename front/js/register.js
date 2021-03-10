@@ -11,22 +11,28 @@ $(function () {
         let rePassword = $('#rePassword');
         let gender = $('#gender');
 
+        let message = [];
+
         let formCheck = true;
 
-        if (!usernameRgex.test(username.val()))
+        if (!usernameRgex.test(username.val()) || !username.val()) {
             formCheck = wrong(username);
-        else normalize(username);
+            message.push("Username must be larger than 3 characters and start with a letter");
+        } else normalize(username);
 
         if (password.val() !== rePassword.val() || !passwordRegex.test(password.val())) {
             formCheck = wrong(password);
             wrong(rePassword);
+            message.push("The password must be larger than 3 characters and contain uppercase and lowercase letters and a special character")
         } else {
             normalize(password);
             normalize(rePassword);
         }
 
-        if (emailRegx.test(email.val()))
+        if (emailRegx.test(email.val())) {
             formCheck = wrong(email);
+            message.push("The email you entered is incorrect");
+        }
         else normalize(email);
 
         if (formCheck) {
@@ -46,14 +52,16 @@ $(function () {
                     if (data.result === true) {
                         alert("register successfully completed, click ok to log in");
                         window.location.href = "/login";
-                    }
-                    else if(data.result === "user exist")
+                    } else if (data.result === "user exist")
                         alert("user exist, you can login or choose another username");
                 },
                 error: (data) => {
                     console.log(data);
                 }
             });
+        }else{
+            $('#log').text(message.join('\n')).show();
+            console.log(3)
         }
     });
 });
